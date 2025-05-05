@@ -1,0 +1,1 @@
+This is an Encounter-Counter for PokeMMO, created by Smitti.
