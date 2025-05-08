@@ -1,12 +1,9 @@
-import json
 import time
 import logging
 
-import Enums
-import scan_screen
-import settings
-from hunt_controller import HuntController
-from poke_tree import PokeTree
+from src import Enums, scan_screen, settings
+from src.hunt_controller import HuntController
+from src.poke_tree import PokeTree
 
 logger = logging.getLogger("EncounterCounter")
 def run():

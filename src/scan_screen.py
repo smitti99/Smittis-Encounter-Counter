@@ -2,8 +2,8 @@ import mss
 import numpy as np
 from PIL import Image
 from paddleocr import PaddleOCR
-import Enums
-from poke_tree import PokeTree
+from src import Enums
+from src.poke_tree import PokeTree
 from settings import global_settings
 
 battle_window = None
@@ -87,5 +87,5 @@ if __name__ == "__main__":
                                 bb_max[j] = bbox[j // 2][j % 2]
                             elif bb_min[j] > bbox[j // 2][j % 2]:
                                 bb_min[j] = bbox[j // 2][j % 2]
-        print("min" + bb_min)
-        print("max" + bb_max)
+        print("min" + str(bb_min))
+        print("max" + str(bb_max))

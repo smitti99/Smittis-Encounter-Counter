@@ -1,18 +1,16 @@
 import json
 from pynput import mouse
 
-from poke_tree import PokeTree
-
 mouse_pos = []
 global_settings = {"version": "1.0", "lang": "en", "battle_box": None}
 
 def load_settings():
-    with open('config.json') as f:
+    with open('../data/config.json') as f:
         data = json.load(f)
         global_settings.update(data)
 
 def save_settings():
-    with open('config.json', "w") as f:
+    with open('../data/config.json', "w") as f:
         json.dump(global_settings, f)
 
 

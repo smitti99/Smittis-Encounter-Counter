@@ -10,7 +10,7 @@ class PokeTree:
 
     def __init__(self, lang):
         self.root = PokeTreeNode()
-        with open('localisation_data.json') as f:
+        with open('../data/localisation_data.json') as f:
             data = json.load(f)
         pokes = data[lang]["pokes"]
         for poke in pokes:
