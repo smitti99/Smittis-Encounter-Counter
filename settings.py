@@ -7,13 +7,11 @@ mouse_pos = []
 global_settings = {"version": "1.0", "lang": "en", "battle_box": None}
 
 def load_settings():
-    global global_settings
     with open('config.json') as f:
         data = json.load(f)
         global_settings.update(data)
 
 def save_settings():
-    global global_settings
     with open('config.json', "w") as f:
         json.dump(global_settings, f)
 
@@ -27,8 +25,6 @@ def on_click(x, y, button, pressed):
 
 
 def set_battle_box():
-    global mouse_pos
-    global global_settings
 
     with mouse.Listener(on_click=on_click) as listener:
         print("Select bottom left corner of Battle Box")
