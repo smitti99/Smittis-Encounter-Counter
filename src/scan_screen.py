@@ -1,3 +1,5 @@
+import logging
+
 import mss
 import numpy as np
 from PIL import Image
@@ -61,6 +63,7 @@ def get_encounter():
 
 
 if __name__ == "__main__":
+    logging.getLogger('ppocr').setLevel(logging.INFO)
     with mss.mss() as sct:
         bb_min = [0, 0, 0, 0, 0, 0, 0, 0]
         bb_max = [0, 0, 0, 0, 0, 0, 0, 0]
@@ -75,7 +78,7 @@ if __name__ == "__main__":
             ocr = PaddleOCR(use_angle_cls=True, lang="en")  # 'de' für Deutsch
             raw_text = (ocr.ocr(img_np, cls=True))
             for text_block in raw_text[0]:
-                if 'Tentacruel Lv. 42' in text_block[1][0]:
+                if 'Tentacruel Lv. 40' in text_block[1][0]:
                     bbox = text_block[0]
                     if i == 0:
                         for j in range(8):
