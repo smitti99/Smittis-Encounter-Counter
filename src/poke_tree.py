@@ -1,4 +1,7 @@
 import json
+import os
+
+base_path = os.path.dirname(os.path.abspath(__file__))
 
 class PokeTreeNode:
     def __init__(self):
@@ -10,7 +13,7 @@ class PokeTree:
 
     def __init__(self, lang):
         self.root = PokeTreeNode()
-        with open('../data/localisation_data.json') as f:
+        with open(os.path.join(base_path, '../data/localisation_data.json')) as f:
             data = json.load(f)
         pokes = data[lang]["pokes"]
         for poke in pokes:
