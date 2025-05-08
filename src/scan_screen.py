@@ -19,9 +19,11 @@ def identify_pkmn(poke_lv_str):
     return ""
 
 def extract_encounter_from_picture(_img):
+    english-tests
 
     ocr = PaddleOCR(use_angle_cls=True, lang=settings.global_settings["lang"])  # 'de' für Deutsch
     raw_text = (ocr.ocr(_img, cls=True))
+
     if raw_text[0] is None:
         return "", Enums.EncounterType.NONE
     poke_strings = []
@@ -50,6 +52,7 @@ def battle_window_pic():
         screenshot = sct.grab(battle_window)
         # In ein PIL-Bild umwandeln (damit du es weiterverwenden kannst)
         img = Image.frombytes("RGB", screenshot.size, screenshot.rgb)
+        english-tests
         img_np = np.array(img)
         return extract_encounter_from_picture(img_np)
 
