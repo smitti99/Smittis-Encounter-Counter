@@ -5,15 +5,12 @@ from poke_tree import PokeTree
 
 mouse_pos = []
 global_settings = {"version": "1.0", "lang": "en", "battle_box": None}
-poke_tree = PokeTree
 
 def load_settings():
     global global_settings
-    global poke_tree
     with open('config.json') as f:
         data = json.load(f)
         global_settings.update(data)
-    poke_tree = PokeTree(global_settings["lang"])
 
 def save_settings():
     global global_settings

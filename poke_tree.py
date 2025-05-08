@@ -7,6 +7,7 @@ class PokeTreeNode:
         self.word = ""
 
 class PokeTree:
+
     def __init__(self, lang):
         self.root = PokeTreeNode()
         with open('localisation_data.json') as f:
@@ -50,6 +51,6 @@ class PokeTree:
         return node_char_list
 
 if __name__ == "__main__":
-    tree = PokeTree()
+    tree = PokeTree("en")
     print(tree.search("Pidgeotto"))
     print(tree.search("Pidgeot"))

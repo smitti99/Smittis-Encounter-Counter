@@ -7,6 +7,7 @@ class HuntController:
     hunt_name = ""
     full_data = {}
     logger = logging.getLogger("EncounterCounter")
+    in_encounter = False
 
     def __init__(self, name ="Default" ):
         self.hunt_name = name
@@ -16,6 +17,9 @@ class HuntController:
                 self.hunt_data = self.full_data[name]
 
     def add(self,name,count):
+        if self.in_encounter:
+            return
+        self.in_encounter = True
         if name in self.hunt_data:
             self.hunt_data[name] += count
         else:

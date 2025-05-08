@@ -6,11 +6,13 @@ import Enums
 import scan_screen
 import settings
 from hunt_controller import HuntController
+from poke_tree import PokeTree
 
+logger = logging.getLogger("EncounterCounter")
 def run():
    last_enc = Enums.EncounterType.NONE
    num_scans = 0
-   print("Lets Go")
+   logger.info("You can now start hunting")
    while True:
       res = scan_screen.get_encounter()
       logging.log(logging.DEBUG,res[0])
@@ -23,9 +25,17 @@ def run():
          hunt_controller.save()
 
 if __name__ == "__main__":
-   global_settings.load_settings()
+
    logging.getLogger('ppocr').setLevel(logging.WARNING)
-   logging.getLogger("EncounterCounter").setLevel(logging.DEBUG)
+   logger.setLevel(logging.DEBUG)
+   logger.info("Loading Config...")
+   settings.load_settings()
+   logger.info("Config loaded")
+   logger.info("Planting Search-Tree...")
+   scan_screen.poke_tree = PokeTree(settings.global_settings["lang"])
+   logger.info("Tree planted")
+   logger.info("Loading 'wasted-time'-Data...")
    hunt_controller = HuntController()
+   logger.info("Previous hunts loaded")
    run()
 
