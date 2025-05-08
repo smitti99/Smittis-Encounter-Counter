@@ -37,4 +37,4 @@ jobs:
     - name: Test with pytest
       run: |
         pytest -v
-        pytest --cov=Smittis-Encounter-Counter
+        pytest --cov=Smittis-Encounter-Counter tests/
