@@ -1,5 +1,8 @@
 import json
-from pynput import mouse
+try:
+    from pynput import mouse
+except ImportError:
+    mouse = None  # Oder eine Mock-Klasse
 
 mouse_pos = []
 global_settings = {"version": "1.0", "lang": "en", "battle_box": None}
