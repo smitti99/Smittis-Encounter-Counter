@@ -4,9 +4,9 @@ import mss
 import numpy as np
 from PIL import Image
 from paddleocr import PaddleOCR
-from src import Enums
+from src import Enums,settings
 from src.poke_tree import PokeTree
-from settings import global_settings
+
 
 battle_window = None
 poke_tree = PokeTree
@@ -19,9 +19,9 @@ def identify_pkmn(poke_lv_str):
     return ""
 
 def extract_encounter_from_picture(_img):
-    img_np = np.array(_img)
-    ocr = PaddleOCR(use_angle_cls=True, lang=global_settings["lang"])  # 'de' für Deutsch
-    raw_text = (ocr.ocr(img_np, cls=True))
+
+    ocr = PaddleOCR(use_angle_cls=True, lang=settings.global_settings["lang"])  # 'de' für Deutsch
+    raw_text = (ocr.ocr(_img, cls=True))
     if raw_text[0] is None:
         return "", Enums.EncounterType.NONE
     poke_strings = []
@@ -50,13 +50,14 @@ def battle_window_pic():
         screenshot = sct.grab(battle_window)
         # In ein PIL-Bild umwandeln (damit du es weiterverwenden kannst)
         img = Image.frombytes("RGB", screenshot.size, screenshot.rgb)
-        return extract_encounter_from_picture(img)
+        img_np = np.array(img)
+        return extract_encounter_from_picture(img_np)
 
 
 def get_encounter():
     global battle_window
-    if global_settings["battle_box"] is not None:
-        box = global_settings["battle_box"]
+    if settings.global_settings["battle_box"] is not None:
+        box = settings.global_settings["battle_box"]
         battle_window = {"top": box[1][1], "left": box[0][0], "height": int((box[0][1] - box[1][1]) / 3.0),
                          "width": box[1][0] - box[0][0]}
         return battle_window_pic()
