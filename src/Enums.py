@@ -4,5 +4,5 @@ class EncounterType(Enum):
     NONE = 0
     SINGLE = 1
     DOUBLE = 2
-    SMALL_HORDE = 4
+    SMALL_HORDE = 3
     HORDE = 5
