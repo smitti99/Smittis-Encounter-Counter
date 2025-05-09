@@ -1,19 +1,21 @@
 This is an Encounter-Counter for PokeMMO, created by Smitti.
 
-First execute the settings.py to setup the basic config file
-Then inside the config.json choose your language (currently "de"/"en")
-Then start the main.py
+## Installing :
+'''
+pip install -r requirements.txt
+'''
+'''
+python3 src/sttings.py
+'''
+Go into the 'data/config.json' to adjust your localisation ('en'- English, 'de'- German)
 
-The Counter will periodically save the Hunt.
+## Run :
+'''
+python3 src/main.py
+'''
 
+## Notes:
+The hunt is currently periodically saved into the 'data/encounter_data.json' as there is no UI yet.
 
-
-TODO
-Battlefenster oberes Drittel
-Baumstruktur zum Abgliech der Pokemon aufbauen
-Pokemon-Lvl-Sring : Leerzeichen entfernen
-
-Config anlegen : Sprache/GrößeBattleFenster
-Daten speichern/laden
 
 [![codecov](https://codecov.io/gh/smitti99/Smittis-Encounter-Counter/graph/badge.svg?token=CCSLTTIQO2)](https://codecov.io/gh/smitti99/Smittis-Encounter-Counter)
