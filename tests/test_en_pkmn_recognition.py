@@ -13,28 +13,32 @@ def test_encounter_extraction():
     img = cv2.imread(os.path.join(base_path, "screenshots/en/Ponyta-SINGLE.jpg"))
     encounter = scan_screen.extract_encounter_from_picture(img)
 
-    assert encounter[0] == "Ponyta"
+    assert encounter[0] == ["Ponyta"]
     assert encounter[1] == EncounterType.SINGLE
 
-    #TODO Double Encounter
+    img = cv2.imread(os.path.join(base_path, "screenshots/en/Patrat-Blitzle_DOUBLE.jpg"))
+    encounter = scan_screen.extract_encounter_from_picture(img)
+
+    assert encounter[0] == ["Patrat","Blitzle"] or encounter[0] == ["Blitzle","Patrat"]
+    assert encounter[1] == EncounterType.DOUBLE
 
     img = cv2.imread(os.path.join(base_path, "screenshots/en/Stunky-SMALL_HORDE.jpg"))
     encounter = scan_screen.extract_encounter_from_picture(img)
 
-    assert encounter[0] == "Stunky"
+    assert encounter[0] == ["Stunky","Stunky","Stunky"]
     assert encounter[1] == EncounterType.SMALL_HORDE
 
 
     img = cv2.imread(os.path.join(base_path,"screenshots/en/Tentacruel_HORDE.jpg"))
     encounter = scan_screen.extract_encounter_from_picture(img)
 
-    assert encounter[0] == "Tentacruel"
+    assert encounter[0] == ["Tentacruel","Tentacruel","Tentacruel","Tentacruel","Tentacruel"]
     assert encounter[1] == EncounterType.HORDE
 
     img = cv2.imread(os.path.join(base_path, "screenshots/out_of_combat.jpg"))
     encounter = scan_screen.extract_encounter_from_picture(img)
 
-    assert encounter[0] == ""
+    assert encounter[0] == [""]
     assert encounter[1] == EncounterType.NONE
 
 def test_identify_pokemon():

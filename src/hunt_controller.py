@@ -16,15 +16,15 @@ class HuntController:
             if name in self.full_data:
                 self.hunt_data = self.full_data[name]
 
-    def add(self,name,count):
+    def add(self,name):
         if self.in_encounter:
             return
         self.in_encounter = True
         if name in self.hunt_data:
-            self.hunt_data[name] += count
+            self.hunt_data[name] += 1
         else:
-            self.hunt_data.update({name:count})
-        self.logger.debug(name+ " "+ str(count))
+            self.hunt_data.update({name:1})
+        self.logger.debug('Added '+name)
 
     def save(self):
         with open('../data/encounter_data.json', "w") as f:

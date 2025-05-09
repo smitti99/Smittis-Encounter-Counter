@@ -14,7 +14,8 @@ def run(): # pragma: no cover
       res = scan_screen.get_encounter()
       logging.log(logging.DEBUG,res[0])
       if last_enc is not res[1]:
-         hunt_controller.add(res[0],res[1].value)
+         for poke in res[0]:
+            hunt_controller.add(poke)
          last_enc = res[1]
       time.sleep(1.5)
       num_scans += 1
