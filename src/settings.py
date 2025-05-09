@@ -1,16 +1,21 @@
 import json
-from pynput import mouse
+import os
+
+try:
+    from pynput import mouse
+except ImportError:
+    mouse = None  # Oder eine Mock-Klasse
 
 mouse_pos = []
 global_settings = {"version": "1.0", "lang": "en", "battle_box": None}
-
+base_path = os.path.dirname(os.path.abspath(__file__))
 def load_settings():
-    with open('../data/config.json') as f:
+    with open(os.path.join(base_path,'../data/config.json')) as f:
         data = json.load(f)
         global_settings.update(data)
 
 def save_settings():
-    with open('../data/config.json', "w") as f:
+    with open(os.path.join(base_path,'../data/config.json', "w")) as f:
         json.dump(global_settings, f)
 
 

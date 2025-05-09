@@ -33,5 +33,12 @@ jobs:
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
 
     - name: Test with pytest and generate coverage report
+      env:
+        PYTHONPATH: src
       run: |
-        pytest -v --cov=. --cov-report=term-missing
+        pytest -v --cov=src --cov-branch --cov-report=xml
+
+    - name: Upload coverage reports to Codecov
+      uses: codecov/codecov-action@v5
+      with:
+        token: ${{ secrets.CODECOV_TOKEN }}

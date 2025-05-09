@@ -6,7 +6,7 @@ from src.hunt_controller import HuntController
 from src.poke_tree import PokeTree
 
 logger = logging.getLogger("EncounterCounter")
-def run():
+def run(): # pragma: no cover
    last_enc = Enums.EncounterType.NONE
    num_scans = 0
    logger.info("You can now start hunting")
@@ -21,7 +21,7 @@ def run():
       if num_scans % 30 == 0:
          hunt_controller.save()
 
-if __name__ == "__main__":
+if __name__ == "__main__": # pragma: no cover
 
    logging.getLogger('ppocr').setLevel(logging.WARNING)
    logger.setLevel(logging.DEBUG)
