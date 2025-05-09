@@ -28,7 +28,7 @@ def extract_encounter_from_picture(_img):
     poke_strings = []
     for text_block in raw_text[0]:
         poke_str = text_block[1][0]
-        if "Lv" in poke_str:
+        if settings.global_settings["lvl-str"] in poke_str:
             poke_strings.append(poke_str.replace(" ", ""))
     pokes_in_view = {}
     for poke in poke_strings:

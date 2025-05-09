@@ -1,5 +1,6 @@
 import json
 import os
+from src.settings import global_settings
 
 base_path = os.path.dirname(os.path.abspath(__file__))
 
@@ -16,9 +17,9 @@ class PokeTree:
         with open(os.path.join(base_path, '../data/localisation_data.json')) as f:
             data = json.load(f)
         pokes = data[lang]["pokes"]
+        global_settings.update({"level-str": data[lang]["lvl-sep"]})
         for poke in pokes:
             self.insert(poke)
-        #self.compress()
 
     # Insert word into trie
     def insert(self, word):

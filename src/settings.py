@@ -7,7 +7,7 @@ except ImportError:
     mouse = None  # Oder eine Mock-Klasse
 
 mouse_pos = []
-global_settings = {"version": "1.0", "lang": "en", "battle_box": None}
+global_settings = {"version": "1.0", "lang": "en", "battle_box": None, "lvl-str" : "Lv."}
 base_path = os.path.dirname(os.path.abspath(__file__))
 def load_settings():
     with open(os.path.join(base_path,'../data/config.json')) as f:
