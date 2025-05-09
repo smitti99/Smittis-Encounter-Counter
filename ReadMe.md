@@ -16,4 +16,4 @@ Pokemon-Lvl-Sring : Leerzeichen entfernen
 Config anlegen : Sprache/GrößeBattleFenster
 Daten speichern/laden
 
-[![codecov](https://codecov.io/gh/smitti99/Smittis-Encounter-Counter/branch/main/graph/badge.svg)](https://codecov.io/gh/smitti99/Smittis-Encounter-Counter)
+[![codecov](https://codecov.io/gh/smitti99/Smittis-Encounter-Counter/graph/badge.svg?token=CCSLTTIQO2)](https://codecov.io/gh/smitti99/Smittis-Encounter-Counter)
