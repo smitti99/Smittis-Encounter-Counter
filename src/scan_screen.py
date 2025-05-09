@@ -64,7 +64,7 @@ def get_encounter():
         return battle_window_pic()
     return "", Enums.EncounterType.NONE
 
-def check_bounding_box_variation():
+def check_bounding_box_variation(): # pragma: no cover
     logging.getLogger('ppocr').setLevel(logging.INFO)
     with mss.mss() as sct:
         bb_min = [0, 0, 0, 0, 0, 0, 0, 0]
@@ -95,5 +95,5 @@ def check_bounding_box_variation():
         print("min" + str(bb_min))
         print("max" + str(bb_max))
 
-if __name__ == "__main__":
+if __name__ == "__main__": # pragma: no cover
     check_bounding_box_variation()
