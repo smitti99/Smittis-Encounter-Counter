@@ -24,27 +24,26 @@ def extract_encounter_from_picture(_img):
     raw_text = (ocr.ocr(_img, cls=True))
 
     if raw_text[0] is None:
-        return "", Enums.EncounterType.NONE
+        return [""], Enums.EncounterType.NONE
     poke_strings = []
     for text_block in raw_text[0]:
         poke_str = text_block[1][0]
         if settings.global_settings["lvl-str"] in poke_str:
             poke_strings.append(poke_str.replace(" ", ""))
-    pokes_in_view = {}
+    pokes_in_view = []
     for poke in poke_strings:
         poke_name = identify_pkmn(poke)
-        if poke_name in pokes_in_view:
-            pokes_in_view[poke_name] += 1
-        else:
-            pokes_in_view.update({poke_name: 1})
-    num_pokes_in_view = np.sum(np.fromiter(pokes_in_view.values(), int))
+        pokes_in_view.append(poke_name)
+    num_pokes_in_view = len(pokes_in_view)
     if num_pokes_in_view == 1:
-        return next(iter(pokes_in_view.keys())), Enums.EncounterType.SINGLE
+        return pokes_in_view, Enums.EncounterType.SINGLE
+    if num_pokes_in_view == 2:
+        return pokes_in_view, Enums.EncounterType.DOUBLE
     if num_pokes_in_view == 3:
-        return next(iter(pokes_in_view.keys())), Enums.EncounterType.SMALL_HORDE
+        return pokes_in_view, Enums.EncounterType.SMALL_HORDE
     if num_pokes_in_view >= 4:
-        return next(iter(pokes_in_view.keys())), Enums.EncounterType.HORDE
-    return "", Enums.EncounterType.NONE
+        return pokes_in_view, Enums.EncounterType.HORDE
+    return [""], Enums.EncounterType.NONE
 
 def battle_window_pic():
     with mss.mss() as sct:
@@ -62,7 +61,7 @@ def get_encounter():
         battle_window = {"top": box[1][1], "left": box[0][0], "height": int((box[0][1] - box[1][1]) / 3.0),
                          "width": box[1][0] - box[0][0]}
         return battle_window_pic()
-    return "", Enums.EncounterType.NONE
+    return [""], Enums.EncounterType.NONE
 
 def check_bounding_box_variation(): # pragma: no cover
     logging.getLogger('ppocr').setLevel(logging.INFO)
