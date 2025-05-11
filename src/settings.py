@@ -1,25 +1,30 @@
 import json
+import logging
 import os
 
 try:
     from pynput import mouse
 except ImportError:
     mouse = None  # Oder eine Mock-Klasse
-
+logger = logging.getLogger("EncounterCounter")
 mouse_pos = []
-global_settings = {"version": "1.0", "lang": "en", "battle_box": None, "lvl-str" : "Lv."}
-base_path = os.path.dirname(os.path.abspath(__file__))
-def load_settings():
-    with open(os.path.join(base_path,'../data/config.json')) as f:
-        data = json.load(f)
-        global_settings.update(data)
+global_settings = {"version": "1.0", "lang": "en", "battle_box": [[288, 784], [1631, 73]], "lvl-str" : "Lv."}
 
-def save_settings():
+base_path = os.path.dirname(os.path.abspath(__file__))
+def load_settings(): # pragma: no cover
+    try:
+        with open(os.path.join(base_path,'../data/config.json')) as f:
+            data = json.load(f)
+            global_settings.update(data)
+    except FileNotFoundError:
+       logger.warning('Config not found. Using default settings')
+
+def save_settings(): # pragma: no cover
     with open(os.path.join(base_path,'../data/config.json', "w")) as f:
         json.dump(global_settings, f)
 
 
-def on_click(x, y, button, pressed):
+def on_click(x, y, button, pressed): # pragma: no cover
     if pressed:
         global mouse_pos
         mouse_pos = [x, y]
@@ -27,7 +32,7 @@ def on_click(x, y, button, pressed):
     return None
 
 
-def set_battle_box():
+def set_battle_box(): # pragma: no cover
 
     with mouse.Listener(on_click=on_click) as listener:
         print("Select bottom left corner of Battle Box")
@@ -46,5 +51,5 @@ def set_battle_box():
     save_settings()
 
 
-if __name__ == "__main__":
+if __name__ == "__main__": # pragma: no cover
     set_battle_box()
