@@ -8,7 +8,8 @@ except ImportError:
     mouse = None  # Oder eine Mock-Klasse
 logger = logging.getLogger("EncounterCounter")
 mouse_pos = []
-global_settings = {"version": "1.0", "lang": "en", "battle_box": [[288, 784], [1631, 73]]}
+global_settings = {"version": "1.0", "lang": "en", "battle_box": [[288, 784], [1631, 73]], "lvl-str" : "Lv."}
+
 base_path = os.path.dirname(os.path.abspath(__file__))
 def load_settings(): # pragma: no cover
     try:

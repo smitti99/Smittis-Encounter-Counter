@@ -18,7 +18,6 @@ class PokeTree:
         pokes = data[lang]["pokes"]
         for poke in pokes:
             self.insert(poke)
-        #self.compress()
 
     # Insert word into trie
     def insert(self, word):
