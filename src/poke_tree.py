@@ -1,6 +1,5 @@
 import json
 import os
-from src.settings import global_settings
 
 base_path = os.path.dirname(os.path.abspath(__file__))
 
