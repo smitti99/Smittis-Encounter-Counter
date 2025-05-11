@@ -17,7 +17,6 @@ class PokeTree:
         with open(os.path.join(base_path, '../data/localisation_data.json')) as f:
             data = json.load(f)
         pokes = data[lang]["pokes"]
-        global_settings.update({"level-str": data[lang]["lvl-sep"]})
         for poke in pokes:
             self.insert(poke)
 
